@@ -12,7 +12,7 @@ class customTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-       cursorColor: Color(0xffFF7F50),
+        cursorColor: Color(0xffFF7F50),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         suffixIcon: suffixIcon,

@@ -1,3 +1,4 @@
+import 'package:chat_app/widgets/button.dart';
 import 'package:chat_app/widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 
@@ -53,23 +54,7 @@ class loginPage extends StatelessWidget {
               Spacer(flex: 2),
               SizedBox(
                 width: double.infinity, 
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Color(0xffFF7F50),
-                    minimumSize: Size(double.infinity, 60), 
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50), 
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    'Log in',
-                    style: TextStyle(
-                      fontSize: 19,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+                child: button(),
               ),
               Spacer(flex: 10),
             ],

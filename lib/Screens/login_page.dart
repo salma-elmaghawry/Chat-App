@@ -10,11 +10,11 @@ class loginPage extends StatelessWidget {
     return  Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0), // Adjust padding as needed
+          padding: const EdgeInsets.symmetric(horizontal: 15.0), // Adjust padding as needed
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Spacer(flex: 3),
+              Spacer(flex: 5),
               Center(
                 child: Image.asset(
                   'assets/chat.png',
@@ -53,10 +53,26 @@ class loginPage extends StatelessWidget {
               ),
               Spacer(flex: 2),
               SizedBox(
-                width: double.infinity, 
                 child: button(),
+                width: double.infinity, 
               ),
-              Spacer(flex: 10),
+              Spacer(flex: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("No account ?",
+                  style: TextStyle(
+                    
+                  ),
+                  ),
+                    Text("Sign up",
+                  style: TextStyle(
+                    color: Color(0xffFF7F50),fontWeight: FontWeight.bold
+                  ),
+                  )
+                ],
+              ),
+              Spacer(flex:10)
             ],
           ),
         ),

@@ -1,14 +1,15 @@
-import 'package:chat_app/Screens/RegisterPage.dart';
+import 'package:chat_app/Screens/login_page.dart';
 import 'package:chat_app/widgets/button.dart';
 import 'package:chat_app/widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 
-class loginPage extends StatelessWidget {
-  const loginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage
+({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20), // Adjust padding as needed
@@ -25,7 +26,7 @@ class loginPage extends StatelessWidget {
               Spacer(flex: 1),
               Center(
                 child: Text(
-                  'LOGIN',
+                  'Register',
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w500,
@@ -62,9 +63,7 @@ class loginPage extends StatelessWidget {
               ),
               Spacer(flex: 3),
               SizedBox(
-                child: button(
-                  title: "Log in",
-                ),
+                child: button(title:'Register'),
                 width: double.infinity,
               ),
               Spacer(flex: 1),
@@ -72,7 +71,7 @@ class loginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "No account ?",
+                    "Already have an account? ",
                     style: TextStyle(),
                   ),
                   GestureDetector(
@@ -80,12 +79,12 @@ class loginPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {
-                          return  RegisterPage();
+                          return loginPage();
                         }),
                       );
                     },
                     child: Text(
-                      "Register",
+                      "Login",
                       style: TextStyle(
                           color: Color(0xffFF7F50),
                           fontWeight: FontWeight.bold),

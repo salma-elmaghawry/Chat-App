@@ -7,6 +7,7 @@ class homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Center(
@@ -14,10 +15,10 @@ class homepage extends StatelessWidget {
             children: [
               SizedBox(height: 150),
               Image.asset(
-                'assets/chat.png',
-                height: 300,
+                'assets/chat.gif',
+                height: 310,
               ),
-              SizedBox(height: 90),
+              SizedBox(height: 80),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xffFF7F50),

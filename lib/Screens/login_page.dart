@@ -10,7 +10,8 @@ class loginPage extends StatelessWidget {
     return  Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0), // Adjust padding as needed
+          
+          padding: const EdgeInsets.all(20), // Adjust padding as needed
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -32,7 +33,7 @@ class loginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer(flex: 2),
+              Spacer(flex: 3),
               Padding(
                 padding: const EdgeInsets.only(left: 7.0, bottom: 5.0),
                 child: Text('Email', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Color(0xffFF7F50))),
@@ -41,7 +42,7 @@ class loginPage extends StatelessWidget {
                 hint: 'johndoe@example.com',
                 suffixIcon: Icon(Icons.email),
               ),
-              Spacer(flex: 1),
+              Spacer(flex: 2),
               Padding(
                 padding: const EdgeInsets.only(left: 7.0, bottom: 5.0),
                 child: Text('Password', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Color(0xffFF7F50))),
@@ -51,12 +52,12 @@ class loginPage extends StatelessWidget {
                 hint: '*******',
                 suffixIcon: Icon(Icons.password_sharp),
               ),
-              Spacer(flex: 2),
+              Spacer(flex: 3),
               SizedBox(
                 child: button(),
                 width: double.infinity, 
               ),
-              Spacer(flex: 4),
+              Spacer(flex: 1),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

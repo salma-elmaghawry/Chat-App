@@ -14,7 +14,8 @@ class customTextField extends StatelessWidget {
     return TextField(
         cursorColor: Color(0xffFF7F50),
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        
+        contentPadding: const EdgeInsets.all(15),
         suffixIcon: suffixIcon,
         suffixIconColor: Color(0xffFF7F50),
         hintText: hint,

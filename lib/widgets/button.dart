@@ -8,7 +8,7 @@ class button extends StatelessWidget {
     return ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xffFF7F50),
-                    minimumSize: Size(double.infinity, 60), 
+                    minimumSize: Size(double.infinity, 50), 
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50), 
                     ),

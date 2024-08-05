@@ -1,10 +1,12 @@
 import 'package:chat_app/Screens/RegisterPage.dart';
+import 'package:chat_app/constant.dart';
 import 'package:chat_app/widgets/button.dart';
 import 'package:chat_app/widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 
 class loginPage extends StatelessWidget {
-  const loginPage({super.key});
+  loginPage({super.key});
+  static String  id = "LoginPage";
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class loginPage extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w500,
-                        color: Color(0xffFF7F50))),
+                        color: kPrimaryColor)),
               ),
               customTextField(
                 hint: 'johndoe@example.com',
@@ -53,7 +55,7 @@ class loginPage extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w500,
-                        color: Color(0xffFF7F50))),
+                        color: kPrimaryColor)),
               ),
               //pacer(flex: 1),
               customTextField(
@@ -77,13 +79,12 @@ class loginPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, 'RegisterPage');
+                      Navigator.pushNamed(context, RegisterPage.id);
                     },
                     child: Text(
                       "Register",
                       style: TextStyle(
-                          color: Color(0xffFF7F50),
-                          fontWeight: FontWeight.bold),
+                          color: kPrimaryColor, fontWeight: FontWeight.bold),
                     ),
                   )
                 ],

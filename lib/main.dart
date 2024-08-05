@@ -13,18 +13,19 @@ class chatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes:{
-        'LoginPage':(context)=>loginPage(),
-        'RegisterPage':(context)=>RegisterPage(),
-      } ,
+      routes: {
+        loginPage.id: (context) => loginPage(),
+        RegisterPage.id: (context) => RegisterPage(),
+        'homepage': (context) => homepage(),
+      },
       debugShowCheckedModeBanner: false,
-      initialRoute:'LoginPage',
-    
+      initialRoute: 'homepage',
+      //home: homepage(),
     );
   }
 }
 /**
- AppBar(
+  AppBar(
           title: const Text('QuickChat'),
           titleTextStyle: const TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
           centerTitle: true,

@@ -4,7 +4,9 @@ import 'package:chat_app/widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+    RegisterPage({super.key});
+      static String id = "RegisterPage";
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, 'LoginPage');
+                      Navigator.pop(context);
                     },
                     child: Text(
                       "Login",

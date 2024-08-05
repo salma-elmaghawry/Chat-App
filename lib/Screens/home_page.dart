@@ -34,7 +34,7 @@ class homepage extends StatelessWidget {
                   );
                 },
                 child: const Text(
-                  "Let's Chat....👉",
+                  "Let's Chat....",
                   style: TextStyle(
                     fontSize: 19,
                     color: Colors.white,

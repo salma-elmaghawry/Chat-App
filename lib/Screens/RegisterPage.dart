@@ -4,12 +4,11 @@ import 'package:chat_app/widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage
-({super.key});
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20), // Adjust padding as needed
@@ -63,7 +62,7 @@ class RegisterPage extends StatelessWidget {
               ),
               Spacer(flex: 3),
               SizedBox(
-                child: button(title:'Register'),
+                child: button(title: 'Register'),
                 width: double.infinity,
               ),
               Spacer(flex: 1),
@@ -76,12 +75,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) {
-                          return loginPage();
-                        }),
-                      );
+                      Navigator.pushNamed(context, 'LoginPage');
                     },
                     child: Text(
                       "Login",

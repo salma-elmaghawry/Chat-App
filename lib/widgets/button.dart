@@ -2,8 +2,9 @@ import 'package:chat_app/constant.dart';
 import 'package:flutter/material.dart';
 
 class button extends StatelessWidget {
-  button({required this.title});
+  button({super.key, required this.title, this.onPressed});
   String title;
+  VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -14,8 +15,8 @@ class button extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
         ),
       ),
-      onPressed: () {},
-      child:  Text(
+      onPressed: onPressed,
+      child: Text(
         title,
         style: TextStyle(
           fontSize: 19,

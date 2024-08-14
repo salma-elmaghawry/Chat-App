@@ -9,7 +9,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
+  ).catchError((error) {
+    print("Firebase initialization error: $error");
+  });
   runApp(const chatApp());
 }
 

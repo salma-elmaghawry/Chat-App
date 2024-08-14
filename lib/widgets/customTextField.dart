@@ -6,13 +6,16 @@ class customTextField extends StatelessWidget {
     super.key,
     required this.hint,
     this.suffixIcon,
+    this.onChange,
   });
+  Function(String)?onChange;
   String? hint;
   Icon? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged:onChange ,
         cursorColor: kPrimaryColor,
       decoration: InputDecoration(
         

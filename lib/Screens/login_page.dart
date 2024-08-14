@@ -65,6 +65,7 @@ class loginPage extends StatelessWidget {
               Spacer(flex: 3),
               SizedBox(
                 child: button(
+                  onPressed:(){},
                   title: "Log in",
                 ),
                 width: double.infinity,

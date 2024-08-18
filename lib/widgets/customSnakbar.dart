@@ -7,15 +7,20 @@ class CustomSnackBar extends SnackBar {
           content: Text(
             message,
             style: TextStyle(
-              color: Colors.white,
+              color: kPrimaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),
-          backgroundColor: kPrimaryColor,
+          //backgroundColor: Color(0xFFD3D3D3),
+          
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
+            
+            
             borderRadius: BorderRadius.circular(10),
+          
           ),
+
           action: SnackBarAction(
             label: 'Retry',
             onPressed: () {},

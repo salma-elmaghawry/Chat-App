@@ -1,5 +1,3 @@
-import 'package:chat_app/Screens/login_page.dart';
-import 'package:chat_app/constant.dart';
 import 'package:chat_app/widgets/button.dart';
 import 'package:chat_app/widgets/customSnakbar.dart';
 import 'package:chat_app/widgets/customTextField.dart';
@@ -11,6 +9,7 @@ class RegisterPage extends StatelessWidget {
   static String id = "RegisterPage";
   String? email;
   String? password;
+  String? messageException;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,7 @@ class RegisterPage extends StatelessWidget {
               ),
               Spacer(flex: 3),
               const Padding(
-                padding: const EdgeInsets.only(left: 7.0, bottom: 5.0),
+                padding: EdgeInsets.only(left: 7.0, bottom: 5.0),
                 child: Text('Email',
                     style: TextStyle(
                         fontSize: 17,
@@ -55,7 +54,7 @@ class RegisterPage extends StatelessWidget {
                 hint: 'johndoe@example.com',
                 suffixIcon: Icon(Icons.email),
               ),
-              Spacer(flex: 2),
+              const Spacer(flex: 2),
               const Padding(
                 padding: const EdgeInsets.only(left: 7.0, bottom: 5.0),
                 child: Text('Password',
@@ -76,22 +75,28 @@ class RegisterPage extends StatelessWidget {
               // SizedBox(
               //   child:
               button(
-                title: 'Register',
-                onPressed: () async {
-                  try {
-                    var auth = FirebaseAuth.instance;
-                    UserCredential user =
-                        await auth.createUserWithEmailAndPassword(
-                            email: email!, password: password!);
-                  } catch (e) {
+                  title: 'Register',
+                  onPressed: () async {
+                    try {
+                      await registerUser();
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == "weak-password") {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          CustomSnackBar(
+                              message: "There was an error, please try again"),
+                        );
+                      } else if (e.code == 'email-already-in-use') {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          CustomSnackBar(message: "Email already exists"),
+                        );
+                      }
+                    }
+                    ;
                     ScaffoldMessenger.of(context).showSnackBar(
                       CustomSnackBar(
                           message: "There was an error, please try again"),
                     );
-                    // TODO
-                  }
-                },
-              ),
+                  }),
               //                 width: double.infinity,
               // ),
               Spacer(flex: 1),
@@ -121,5 +126,10 @@ class RegisterPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> registerUser() async {
+    UserCredential user = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email!, password: password!);
   }
 }

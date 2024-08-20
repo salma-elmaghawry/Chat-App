@@ -11,117 +11,122 @@ class RegisterPage extends StatelessWidget {
   String? password;
   String? messageException;
 
+  GlobalKey<FormState> formKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(20), // Adjust padding as needed
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Spacer(flex: 5),
-              Center(
-                child: Image.asset(
-                  'assets/chat.png',
-                  height: 200,
-                ),
-              ),
-              Spacer(flex: 1),
-              const Center(
-                child: Text(
-                  'Register',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xff36454F),
+          padding: EdgeInsets.all(20), // Adjust padding as needed
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Spacer(flex: 5),
+                Center(
+                  child: Image.asset(
+                    'assets/chat.png',
+                    height: 200,
                   ),
                 ),
-              ),
-              Spacer(flex: 3),
-              const Padding(
-                padding: EdgeInsets.only(left: 7.0, bottom: 5.0),
-                child: Text('Email',
+                Spacer(flex: 1),
+                const Center(
+                  child: Text(
+                    'Register',
                     style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xffFF7F50))),
-              ),
-              customTextField(
-                onChange: (data) {
-                  email = data;
-                },
-                hint: 'johndoe@example.com',
-                suffixIcon: Icon(Icons.email),
-              ),
-              const Spacer(flex: 2),
-              const Padding(
-                padding: const EdgeInsets.only(left: 7.0, bottom: 5.0),
-                child: Text('Password',
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xffFF7F50))),
-              ),
-              //pacer(flex: 1),
-              customTextField(
-                onChange: (passData) {
-                  password = passData;
-                },
-                hint: '*******',
-                suffixIcon: Icon(Icons.password_sharp),
-              ),
-              Spacer(flex: 3),
-              // SizedBox(
-              //   child:
-              button(
-                  title: 'Register',
-                  onPressed: () async {
-                    try {
-                      await registerUser();
-                    } on FirebaseAuthException catch (e) {
-                      if (e.code == "weak-password") {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          CustomSnackBar(
-                              message: "There was an error, please try again"),
-                        );
-                      } else if (e.code == 'email-already-in-use') {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          CustomSnackBar(message: "Email already exists"),
-                        );
-                      }
-                    }
-                    ;
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      CustomSnackBar(
-                          message: "There was an error, please try again"),
-                    );
-                  }),
-              //                 width: double.infinity,
-              // ),
-              Spacer(flex: 1),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Already have an account? ",
-                    style: TextStyle(),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Login",
-                      style: TextStyle(
-                          color: Color(0xffFF7F50),
-                          fontWeight: FontWeight.bold),
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xff36454F),
                     ),
-                  )
-                ],
-              ),
-              Spacer(flex: 10)
-            ],
+                  ),
+                ),
+                Spacer(flex: 3),
+                Padding(
+                  padding: EdgeInsets.only(left: 7.0, bottom: 5.0),
+                  child: Text('Email',
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xffFF7F50))),
+                ),
+
+                customTextField(
+                  onChange: (data) {
+                    email = data;
+                  },
+                  hint: 'johndoe@example.com',
+                  suffixIcon: Icon(Icons.email),
+                ),
+                Spacer(flex: 2),
+                Padding(
+                  padding: EdgeInsets.only(left: 7.0, bottom: 5.0),
+                  child: Text('Password',
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xffFF7F50))),
+                ),
+                customTextField(
+                  onChange: (data) {
+                    password = data;
+                  },
+                  hint: '*******',
+                ),
+                Spacer(flex: 3),
+
+                SizedBox(
+                  child: button(
+                      title: 'Register',
+                      onPressed: () async {
+                        try {
+                          await registerUser();
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == "weak-password") {
+                            //ScaffoldMessenger.of(context).showSnackBar
+
+                            CustomSnackBar(
+                                message:
+                                    "There was an error, please try again");
+                          } else if (e.code == 'email-already-in-use') {
+                            //ScaffoldMessenger.of(context).showSnackBar
+
+                            CustomSnackBar(message: "Email already exists");
+                          }
+                        } catch (e) {
+                          CustomSnackBar(
+                              message: "There was an error, please try again");
+                        }
+                      }),
+                      
+                ),
+                //                 width: double.infinity,
+                // ),
+                Spacer(flex: 1),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account? ",
+                      style: TextStyle(),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                            color: Color(0xffFF7F50),
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                ),
+                Spacer(flex: 10)
+              ],
+            ),
           ),
         ),
       ),

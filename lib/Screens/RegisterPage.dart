@@ -21,17 +21,17 @@ class RegisterPage extends StatelessWidget {
           padding: EdgeInsets.all(20), // Adjust padding as needed
           child: Form(
             key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
+              //crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Spacer(flex: 5),
+                SizedBox(height: 50),
                 Center(
                   child: Image.asset(
                     'assets/chat.png',
                     height: 200,
                   ),
                 ),
-                Spacer(flex: 1),
+                SizedBox(height: 20),
                 const Center(
                   child: Text(
                     'Register',
@@ -42,7 +42,7 @@ class RegisterPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer(flex: 3),
+                  SizedBox(height: 30),
                 Padding(
                   padding: EdgeInsets.only(left: 7.0, bottom: 5.0),
                   child: Text('Email',
@@ -59,7 +59,7 @@ class RegisterPage extends StatelessWidget {
                   hint: 'johndoe@example.com',
                   suffixIcon: Icon(Icons.email),
                 ),
-                Spacer(flex: 2),
+                SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.only(left: 7.0, bottom: 5.0),
                   child: Text('Password',
@@ -73,37 +73,43 @@ class RegisterPage extends StatelessWidget {
                     password = data;
                   },
                   hint: '*******',
+                  suffixIcon: Icon(Icons.password_sharp),
                 ),
-                Spacer(flex: 3),
-
+                  SizedBox(height: 30),
                 SizedBox(
                   child: button(
                       title: 'Register',
                       onPressed: () async {
-                        try {
-                          await registerUser();
-                        } on FirebaseAuthException catch (e) {
-                          if (e.code == "weak-password") {
-                            //ScaffoldMessenger.of(context).showSnackBar
+                        if (formKey.currentState!.validate()) {
+                          try {
+                            await registerUser();
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == "weak-password") {
+                              //ScaffoldMessenger.of(context).showSnackBar
 
+                              CustomSnackBar(
+                                  message:
+                                      "There was an error, please try again");
+                            } else if (e.code == 'email-already-in-use') {
+                              //ScaffoldMessenger.of(context).showSnackBar
+
+                              CustomSnackBar(message: "Email already exists");
+                            }
+                          } catch (e) {
                             CustomSnackBar(
                                 message:
                                     "There was an error, please try again");
-                          } else if (e.code == 'email-already-in-use') {
-                            //ScaffoldMessenger.of(context).showSnackBar
-
-                            CustomSnackBar(message: "Email already exists");
                           }
-                        } catch (e) {
-                          CustomSnackBar(
-                              message: "There was an error, please try again");
+                        }
+                        else
+                        {
+
                         }
                       }),
-                      
                 ),
                 //                 width: double.infinity,
                 // ),
-                Spacer(flex: 1),
+                  SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -124,7 +130,7 @@ class RegisterPage extends StatelessWidget {
                     )
                   ],
                 ),
-                Spacer(flex: 10)
+                //Spacer(flex: 10)
               ],
             ),
           ),

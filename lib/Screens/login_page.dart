@@ -14,17 +14,17 @@ class loginPage extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20), // Adjust padding as needed
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
+            //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Spacer(flex: 5),
+              SizedBox(height: 50),
               Center(
                 child: Image.asset(
                   'assets/chat.png',
                   height: 200,
                 ),
               ),
-              Spacer(flex: 1),
+              SizedBox(height: 20),
               Center(
                 child: Text(
                   'LOGIN',
@@ -35,7 +35,7 @@ class loginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer(flex: 3),
+              SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.only(left: 7.0, bottom: 5.0),
                 child: Text('Email',
@@ -48,7 +48,7 @@ class loginPage extends StatelessWidget {
                 hint: 'johndoe@example.com',
                 suffixIcon: Icon(Icons.email),
               ),
-              Spacer(flex: 2),
+              SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.only(left: 7.0, bottom: 5.0),
                 child: Text('Password',
@@ -62,7 +62,7 @@ class loginPage extends StatelessWidget {
                 hint: '*******',
                 suffixIcon: Icon(Icons.password_sharp),
               ),
-              Spacer(flex: 3),
+              SizedBox(height: 30),
               SizedBox(
                 child: button(
                   onPressed:(){},
@@ -70,12 +70,12 @@ class loginPage extends StatelessWidget {
                 ),
                 width: double.infinity,
               ),
-              Spacer(flex: 1),
+                SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "No account ?",
+                    "No account? ",
                     style: TextStyle(),
                   ),
                   GestureDetector(
@@ -90,7 +90,7 @@ class loginPage extends StatelessWidget {
                   )
                 ],
               ),
-              Spacer(flex: 10)
+              //Spacer(flex: 10)
             ],
           ),
         ),

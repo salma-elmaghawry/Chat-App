@@ -8,22 +8,28 @@ class customTextField extends StatelessWidget {
     this.suffixIcon,
     this.onChange,
   });
-  Function(String)?onChange;
+  Function(String)? onChange;
   String? hint;
   Icon? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged:onChange ,
-        cursorColor: kPrimaryColor,
+    return TextFormField(
+      validator: (data) {
+        if (data!.isEmpty) {
+          //error message
+          return "Field is required";
+        }
+      },
+      onChanged: onChange,
+      cursorColor: kPrimaryColor,
       decoration: InputDecoration(
-        
         contentPadding: const EdgeInsets.all(15),
         suffixIcon: suffixIcon,
         suffixIconColor: kPrimaryColor,
         hintText: hint,
-        hintStyle: TextStyle(fontSize: 15, color: Color.fromARGB(255, 156, 155, 155)),
+        hintStyle:
+            TextStyle(fontSize: 15, color: Color.fromARGB(255, 156, 155, 155)),
         filled: true,
         fillColor: Color(0xFFD3D3D3),
         focusedBorder: OutlineInputBorder(
@@ -46,6 +52,5 @@ class customTextField extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }

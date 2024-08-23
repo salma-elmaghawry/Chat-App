@@ -1,3 +1,4 @@
+import 'package:chat_app/constant.dart';
 import 'package:chat_app/widgets/button.dart';
 import 'package:chat_app/widgets/customTextField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,6 +28,8 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
+      progressIndicator: const CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor)),
       inAsyncCall: isLoading,
       child: Scaffold(
         body: Center(
@@ -64,8 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             fontWeight: FontWeight.w500,
                             color: Color(0xffFF7F50))),
                   ),
-
-                  customTextField(
+                  customTextFormField(
                     onChange: (data) {
                       email = data;
                     },
@@ -81,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             fontWeight: FontWeight.w500,
                             color: Color(0xffFF7F50))),
                   ),
-                  customTextField(
+                  customTextFormField(
                     onChange: (data) {
                       password = data;
                     },
@@ -100,7 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               await registerUser();
                               showSnackBar(
                                   context, "Account Created Successfully");
-                              Navigator.pop(context);//to go to login page 
+                            Navigator.pop(context);//to go to login page 
 
                             } on FirebaseAuthException catch (e) {
                               if (e.code == "weak-password") {

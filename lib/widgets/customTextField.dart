@@ -1,8 +1,8 @@
 import 'package:chat_app/constant.dart';
 import 'package:flutter/material.dart';
 
-class customTextField extends StatelessWidget {
-  customTextField({
+class customTextFormField extends StatelessWidget {
+  customTextFormField({
     super.key,
     required this.hint,
     this.suffixIcon,

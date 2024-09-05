@@ -8,28 +8,35 @@ class chatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: kPrimaryColor,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                logoPath,
-                width: 45,
-                height: 45,
+        backgroundColor: Colors.white,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(60),
+          child: SafeArea(
+            child: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    logoPath,
+                    width: 45,
+                    height: 45,
+                  ),
+                  const Text(
+                    " QuickChat",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: kPrimaryColor),
+                  ),
+                ],
               ),
-              const Text(
-                " QuickChat",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-            ],
+            ),
           ),
-          centerTitle: true,
         ),
         body: Column(
+          
           children: [
             Expanded(
               child: ListView.builder(itemBuilder: (context, index) {
@@ -39,15 +46,16 @@ class chatPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: TextField(
-                
                 decoration: InputDecoration(
                   hintText: "Send Message",
-                  hintStyle:TextStyle(color: const Color.fromARGB(255, 165, 163, 163),),
+                  hintStyle: TextStyle(
+                    color: const Color.fromARGB(255, 165, 163, 163),
+                  ),
                   suffixIcon: Icon(Icons.send),
                   suffixIconColor: kPrimaryColor,
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(width: 2.0,color: kPrimaryColor),
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide(width: 2.0, color: kPrimaryColor),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),

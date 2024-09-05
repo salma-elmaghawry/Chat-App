@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class homepage extends StatelessWidget {
   const homepage({super.key});
+  static String id="homePage";
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class homepage extends StatelessWidget {
               SizedBox(height: 80),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: kPrimaryColor,
+                    backgroundColor: kPrimaryColor,
                   minimumSize: Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),

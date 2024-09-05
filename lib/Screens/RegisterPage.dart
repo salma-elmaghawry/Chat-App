@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/helper/show_snakBar.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:chat_app/Screens/chat_page.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({super.key});
@@ -100,10 +101,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             setState(() {});
                             try {
                               await registerUser();
-                              showSnackBar(
-                                  context, "Account Created Successfully");
-                            Navigator.pop(context);//to go to login page 
-
+                              Navigator.pushNamed(context, chatPage.id);
+                              //to go to login page
                             } on FirebaseAuthException catch (e) {
                               if (e.code == "weak-password") {
                                 showSnackBar(context, "Weak Password");

@@ -1,4 +1,5 @@
 import 'package:chat_app/Screens/RegisterPage.dart';
+import 'package:chat_app/Screens/chat_page.dart';
 import 'package:chat_app/constant.dart';
 import 'package:chat_app/widgets/button.dart';
 import 'package:chat_app/widgets/customTextField.dart';
@@ -97,6 +98,7 @@ class _loginPageState extends State<loginPage> {
                           setState(() {});
                           try {
                             await loginUser();
+                          Navigator.pushNamed(context, chatPage.id);
                             showSnackBar(context, "Success");
                           } on FirebaseAuthException catch (e) {
                             if (e.code == "user-not-found") {

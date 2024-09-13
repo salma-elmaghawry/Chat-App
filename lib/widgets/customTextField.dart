@@ -12,7 +12,7 @@ class customTextFormField extends StatelessWidget {
   Function(String)? onChange;
   String? hint;
   Icon? suffixIcon;
-   bool? obscureText;
+    bool? obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +30,18 @@ class customTextFormField extends StatelessWidget {
         contentPadding: const EdgeInsets.all(15),
         suffixIcon: suffixIcon,
         suffixIconColor: kPrimaryColor,
-        hintText: hint,
+        hintText: hint ?? '',
         hintStyle:
-            TextStyle(fontSize: 15, color: Color.fromARGB(255, 156, 155, 155)),
+            const TextStyle(fontSize: 15, color: Color.fromARGB(255, 156, 155, 155)),
         filled: true,
-        fillColor: Color(0xFFD3D3D3),
+        fillColor: const Color.fromARGB(255, 212, 215, 219),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50),
-          borderSide: BorderSide(width: 2.0, color: kPrimaryColor),
+          borderSide:const BorderSide(width: 2.0, color: kPrimaryColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             width: 0.0,
             color: Colors.transparent,
           ),

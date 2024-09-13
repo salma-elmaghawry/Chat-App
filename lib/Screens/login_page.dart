@@ -112,8 +112,7 @@ class _loginPageState extends State<loginPage> {
                         }
                         isLoading = false;
                         setState(() {});
-                      }
-                      else {}
+                      } else {}
                     },
                     title: "Log in",
                   ),

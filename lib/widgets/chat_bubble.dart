@@ -33,3 +33,35 @@ final   MessageModel Message;
     );
   }
 }
+class BubbleChat2 extends StatelessWidget {
+  const  BubbleChat2({required this.Message,super.key});
+final   MessageModel Message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Container(
+        //,alignment: Alignment.centerLeft,
+        padding: EdgeInsets.only(left: 18, top: 15, bottom: 15, right: 20),
+        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          bottomLeft: Radius.circular(30),
+          ),
+          color: coralColor,
+        ),
+        child: Text(
+          Message.Message,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+

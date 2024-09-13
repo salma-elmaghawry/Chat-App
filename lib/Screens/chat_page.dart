@@ -13,15 +13,22 @@ class chatPage extends StatelessWidget {
   //final Stream<QuerySnapshot> Messages = FirebaseFirestore.instance.collection(kMessageCollections).snapshots();
   @override
   Widget build(BuildContext context) {
+    var email = ModalRoute.of(context)!.settings.arguments;
     return StreamBuilder<QuerySnapshot>(
-        stream: Messages.orderBy(kCreatedAt,descending: true).snapshots(),
+        stream: Messages.orderBy(kCreatedAt, descending: true).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<MessageModel> MessagesList = [];
             for (int i = 0; i < snapshot.data!.docs.length; i++) {
               var documentData =
                   snapshot.data!.docs[i].data() as Map<String, dynamic>;
-              MessagesList.add(MessageModel.fromJson(documentData));
+              String message = documentData['Message'] ??
+                  'No message'; // Provide default for null
+              String id =
+                  documentData['id'] ?? 'unknown'; // Provide default for null
+
+              // Add message to list with the provided fallback values
+              MessagesList.add(MessageModel(message, id));
             }
 
             return Scaffold(
@@ -29,10 +36,10 @@ class chatPage extends StatelessWidget {
                     preferredSize: Size.fromHeight(75),
                     child: Container(
                       decoration: const BoxDecoration(
-                          color: seccolor,
-                          ),
+                        color: seccolor,
+                      ),
                       child: Padding(
-                        padding: EdgeInsets.only(top: 40, bottom: 15),
+                        padding: EdgeInsets.only(top: 45, bottom: 15),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -55,13 +62,15 @@ class chatPage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ListView.builder(
-                        reverse: true,
+                          reverse: true,
                           controller: _controller,
                           itemCount: MessagesList.length,
                           itemBuilder: (context, index) {
-                            return BubbleChat(
-                              Message: MessagesList[index],
-                            );
+                            return MessagesList[index].id == email
+                                ? BubbleChat(
+                                    Message: MessagesList[index],
+                                  )
+                                : BubbleChat2(Message: MessagesList[index]);
                           }),
                     ),
                     Padding(
@@ -69,17 +78,19 @@ class chatPage extends StatelessWidget {
                       child: TextField(
                         controller: controller,
                         onSubmitted: (data) {
-                          Messages.add(
-                              {"Message": data, kCreatedAt: DateTime.now()});
+                          Messages.add({
+                            "Message": data,
+                            kCreatedAt: DateTime.now(),
+                            'id': email,
+                          });
                           controller.clear();
-                          _controller.animateTo(
-                            0,
+                          _controller.animateTo(0,
                               duration: Duration(seconds: 1),
                               curve: Curves.fastOutSlowIn);
                         },
                         decoration: InputDecoration(
                           hintText: "Send Message",
-                          hintStyle:const  TextStyle(
+                          hintStyle: const TextStyle(
                             color: const Color.fromARGB(255, 165, 163, 163),
                           ),
                           suffixIcon: Icon(Icons.send),
@@ -104,7 +115,9 @@ class chatPage extends StatelessWidget {
                   ],
                 ));
           } else {
-            return const Text("Is Loading....");
+            return Center(
+        child: CircularProgressIndicator(), // Return loading indicator
+      );
           }
         });
   }

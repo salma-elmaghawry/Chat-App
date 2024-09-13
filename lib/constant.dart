@@ -8,3 +8,5 @@ const coralColor = Color.fromARGB(255, 122, 173, 175);
 
 const logoPath = "assets/chatanimated.png";
 const kMessageCollections = "Messages";
+const kMessage = "Message";
+const kCreatedAt = "CreatedAt";

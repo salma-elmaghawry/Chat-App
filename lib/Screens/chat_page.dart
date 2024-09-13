@@ -1,42 +1,45 @@
 import 'package:chat_app/constant.dart';
 import 'package:chat_app/widgets/chat_bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class chatPage extends StatelessWidget {
   static String id = "chatPage";
-
+  TextEditingController controller = TextEditingController();
+  CollectionReference Messages =
+      FirebaseFirestore.instance.collection(kMessageCollections);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60),
-          child: SafeArea(
-            child: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    logoPath,
-                    width: 45,
-                    height: 45,
-                  ),
-                  const Text(
-                    " QuickChat",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: kPrimaryColor),
-                  ),
-                ],
+            preferredSize: Size.fromHeight(75),
+            child: Container(
+              decoration: const BoxDecoration(
+                  color: seccolor,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50))),
+              child: Padding(
+                padding: EdgeInsets.only(top: 35, bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "assets/chatanimated.png",
+                      height: 35,
+                    ),
+                    const Text(
+                      " QuickChat",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
-        ),
+            )),
         body: Column(
-          
           children: [
             Expanded(
               child: ListView.builder(itemBuilder: (context, index) {
@@ -46,6 +49,11 @@ class chatPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: TextField(
+                controller: controller,
+                onSubmitted: (data) {
+                  Messages.add({"Message": data});
+                  controller.clear();
+                },
                 decoration: InputDecoration(
                   hintText: "Send Message",
                   hintStyle: TextStyle(

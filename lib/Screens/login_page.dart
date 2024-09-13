@@ -46,7 +46,7 @@ class _loginPageState extends State<loginPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Center(
+                  const Center(
                     child: Text(
                       'LOGIN',
                       style: TextStyle(
@@ -83,40 +83,39 @@ class _loginPageState extends State<loginPage> {
                   ),
                   //pacer(flex: 1),
                   customTextFormField(
+                    obscureText: true,
                     onChange: (data) {
                       password = data;
                     },
-                    hint: '*******',
+                    hint: 'Password',
                     suffixIcon: Icon(Icons.password_sharp),
                   ),
                   SizedBox(height: 30),
-                  SizedBox(
-                    child: button(
-                      onPressed: () async {
-                        if (formKey.currentState!.validate()) {
-                          isLoading = true;
-                          setState(() {});
-                          try {
-                            await loginUser();
-                          Navigator.pushNamed(context, chatPage.id);
-                            showSnackBar(context, "Success");
-                          } on FirebaseAuthException catch (e) {
-                            if (e.code == "user-not-found") {
-                              showSnackBar(
-                                  context, "This user is not registered");
-                            } else if (e.code == "wrong-password")
-                              showSnackBar(context, "Wrong password ");
-                          } catch (e) {
-                            showSnackBar(context,
-                                "There was an error, please try again");
-                          }
-                          isLoading = false;
-                          setState(() {});
+                  button(
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        isLoading = true;
+                        setState(() {});
+                        try {
+                          await loginUser();
+                          Navigator.pushNamed(context, chatPage.id,
+                              arguments: email);
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == "user-not-found") {
+                            showSnackBar(context, "This user is not found");
+                          } else if (e.code == "wrong-password")
+                            showSnackBar(context, "Wrong password ");
+                        } catch (e) {
+                          print(e);
+                          showSnackBar(
+                              context, "There was an error, please try again");
                         }
-                      },
-                      title: "Log in",
-                    ),
-                    width: double.infinity,
+                        isLoading = false;
+                        setState(() {});
+                      }
+                      else {}
+                    },
+                    title: "Log in",
                   ),
                   SizedBox(height: 15),
                   Row(

@@ -30,7 +30,7 @@ class chatApp extends StatelessWidget {
         
       },
       debugShowCheckedModeBanner: false,
-      initialRoute: chatPage.id,
+      initialRoute: homepage.id,
       //home: homepage(),
     );
   }

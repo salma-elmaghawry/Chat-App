@@ -85,10 +85,11 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: Color(0xffFF7F50))),
                   ),
                   customTextFormField(
+                    obscureText: true,
                     onChange: (data) {
                       password = data;
                     },
-                    hint: '*******',
+                    hint: 'Password',
                     suffixIcon: Icon(Icons.password_sharp),
                   ),
                   SizedBox(height: 30),
